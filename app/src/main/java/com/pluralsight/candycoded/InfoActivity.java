@@ -17,6 +17,7 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         TextView adress = (TextView) findViewById(R.id.text_view_address);
+        TextView phoneNumber = (TextView) findViewById(R.id.text_view_phone);
 
         Uri uri = Uri.parse("android.resource://com.codeschool.candycoded/" + R.drawable.store_front);
         ImageView candyStoreImageView = (ImageView)findViewById(R.id.image_view_candy_store);
@@ -28,6 +29,13 @@ public class InfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createMapIntent(view);
+            }
+        });
+
+        phoneNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPhoneIntent(view);
             }
         });
     }
@@ -47,4 +55,11 @@ public class InfoActivity extends AppCompatActivity {
     // ***
     // TODO - Task 3 - Launch the Phone Activity
     // ***
+
+    public void createPhoneIntent(View view){
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        Uri numberToDial = Uri.parse("tel:0123456789");
+        dialIntent.setData(numberToDial);
+        startActivity(dialIntent);
+    }
 }
